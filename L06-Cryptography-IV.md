@@ -59,10 +59,14 @@ Here’s a cleaned-up and detailed **note summary** followed by a **Markdown min
 ---
 
 ### 🔸 Digital Signatures
-
-- Purpose:
+- Digital code to verify:
   - Ensure authenticity and integrity of a message
-  - Enable **non-repudiation**
+  - Verify identity of sender
+  - Prevent **non-repudiation**
+- Purpose:
+  - Only signing authority can sign a document, but everyone can verify
+  - Signature is non-transferrable (signing one doc can't be transferred to another)
+
 - Process:
   - The sender signs a document using their **private key**
   - Anyone can verify it using the **public key**
@@ -71,7 +75,10 @@ Here’s a cleaned-up and detailed **note summary** followed by a **Markdown min
 ---
 
 ### 🔸 Properties of Cryptographic Keys
-
+- Key is a paramaeter that determines the functional output of cryptographic algorithm.
+  - Encryption: M' = E(M,k1)
+  - Decryption: M = D(M',k2)
+  - For public key cryptography k1 != k2
 - Keys must be:
   - Randomly generated
   - Of sufficient length (to prevent brute-force attacks)
@@ -82,6 +89,8 @@ Here’s a cleaned-up and detailed **note summary** followed by a **Markdown min
 ### 🔸 RSA Algorithm
 
 - Widely-used public key algorithm
+- Encryption key is public and anyone can encrypt
+- Decryption key is private and only intended reciever can decrypt
 - **Four main steps**:
   1. Key generation
   2. Key distribution
@@ -95,6 +104,11 @@ Here’s a cleaned-up and detailed **note summary** followed by a **Markdown min
 - Choose `e` such that `1 < e < φ(n)` and `gcd(e, φ(n)) = 1`
 - Determine `d`, the modular inverse of `e` mod φ(n)
 - Public key = `(e, n)`, Private key = `(d, n)`
+- From slide:
+  - Feasible to find e, d, n, such that modular exponentiation for integers m (0<= m < n) `(m^e)^d ≡ m(mod n)`
+  - Even if e, n, m are compromised, computing d is difficult.
+  - `(m^e)^d ≡ m(mod n) = (m^d)^e ≡ m(mod n)`
+  - `d*e≡ 1(mod n)`
 
 #### 🔹 Encryption & Decryption
 - **Encryption**: `ciphertext = (message^e) mod n`
